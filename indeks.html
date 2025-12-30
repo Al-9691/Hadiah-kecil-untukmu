@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu 🐾</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,sans-serif;
+  background:#0f1220;
+  color:#333;
+}
+
+/* ================= STAGE 1 : GIFT ================= */
+#giftStage{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to bottom,#1b1f2a,#0f1220);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+#gift{
+  width:220px;
+  max-width:70vw;
+  cursor:pointer;
+}
+
+.shake{ animation:shake .4s }
+@keyframes shake{
+  0%{transform:rotate(0)}
+  25%{transform:rotate(-6deg)}
+  50%{transform:rotate(6deg)}
+  75%{transform:rotate(-4deg)}
+  100%{transform:rotate(0)}
+}
+
+.hint{
+  color:#fff;
+  opacity:.8;
+  margin-top:14px;
+  font-size:14px;
+}
+
+/* ================= STAGE 2 : SCRAPBOOK ================= */
+.scrapbook{
+  min-height:100vh;
+  background:#fdf6ee url("assets/paper-texture.png");
+  padding:80px 20px 120px;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+}
+
+.scrap-item{
+  max-width:300px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
+  text-align:center;
+}
+
+.scrap-item img{
+  width:100%;
+  border-radius:10px;
+  display:block;
+}
+
+.scrap-item p{
+  margin:10px 4px 2px;
+  font-size:14px;
+  line-height:1.4;
+  color:#555;
+}
+
+.rotate-left{ transform:rotate(-3deg) }
+.rotate-right{ transform:rotate(3deg) }
+
+.scrap-item.note{
+  background:#fff8c6;
+  font-style:italic;
+  padding:18px 14px;
+}
+
+/* ================= STAGE 3 : ENVELOPE ================= */
+#letterStage{
+  min-height:100vh;
+  background:
+    linear-gradient(to bottom, rgba(255,244,232,.85), rgba(27,31,42,.85)),
+    url("assets/latar.png");
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding-bottom:120px;
+}
+
+.wrapper{
+  position:relative;
+  width:320px;
+  perspective:1200px;
+}
+
+.envelope{
+  width:300px;
+  height:200px;
+  background:url("assets/envelope.png") center/cover;
+  position:relative;
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:300px;
+  height:135px; /* ← BESARKAN FLAP DI SINI */
+  background:url("assets/flap.png") center top / 150% 150% no-repeat;
+  transform-origin:top center;
+  transition:.8s;
+  z-index:3;
+  backface-visibility:hidden;
+}
+
+
+
+.letter{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%) translateY(100px);
+  width:320px;
+  max-height:60vh;          /* ⭐ batas tinggi surat */
+  overflow-y:auto;          /* ⭐ aktifkan scroll */
+  background:#fffaf2;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  opacity:0;
+  transition:1s;
+  z-index:2;
+}
+
+
+.open .flap{ transform:rotateX(-160deg) }
+.open .letter{
+  opacity:1;
+  transform:translateX(-50%) translateY(90px);
+}
+
+/* ================= FLOATING CATS ================= */
+.cat{
+  position:fixed;
+  width:70px;
+  z-index:999;
+  touch-action:none;
+  cursor:grab;
+  animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{ transform:translateY(0) }
+  50%{ transform:translateY(-18px) }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== STAGE 1 ===== -->
+<section id="giftStage">
+  <img src="assets/gift-cat.png" id="gift">
+  <div class="hint">ketuk kadonya 🐾</div>
+</section>
+
+<!-- ===== STAGE 2 : SCRAPBOOK ===== -->
+<section id="cardStage" class="scrapbook">
+  <div class="scrap-item rotate-left">
+    <img src="assets/photos/fespa mpk.jpeg">
+    <p>Fespa 10th 🛵</p>
+  </div>
+
+  <div class="scrap-item rotate-right">
+    <img src="assets/photos/pia mpk.jpeg">
+    <p>bendahara imut 🤍</p>
+  </div>
+
+  <div class="scrap-item rotate-left">
+    <img src="assets/photos/famget mpk.jpeg">
+    <p>event terbaik 🌟</p>
+  </div>
+
+  <div class="scrap-item rotate-right">
+    <img src="assets/photos/berempat.jpeg">
+    <p>fotbar random 😁</p>
+  </div>
+
+  <div class="scrap-item note">
+    <p>periode ini jadi yang terbaik<br>semuanya karena ada kamu disini</p>
+  </div>
+
+  <div class="scrap-item rotate-left">
+    <img src="assets/photos/pia opsi.jpeg">
+    <p>approve pp wa 😅</p>
+  </div>
+
+  <div class="scrap-item rotate-right">
+    <img src="assets/photos/pia final opsi.jpeg">
+    <p>juara dihatiku 🥇</p>
+  </div>
+
+  <div class="scrap-item note">
+    <p>terima kasih<br>sudah jadi inspirasiku</p>
+  </div>
+
+  <div class="scrap-item rotate-left">
+    <img src="assets/photos/pia padang.jpeg">
+    <p>padang nggak pernah seseru ini ✨ </p>
+  </div>
+
+  <div class="scrap-item rotate-right">
+    <img src="assets/photos/pia dpr.jpeg">
+    <p>cantiknya kebangetan inimah😍</p>
+  </div>
+
+  <div class="scrap-item rotate-left">
+    <img src="assets/photos/berdua.jpeg">
+    <p>makasih udah buat aku "hidup" 🥰</p>
+  </div>
+
+  <div class="scrap-item note">
+    <p>makasih untuk tahun ini<br>aku sayang pia selamanyaa 🩷</p>
+  </div>
+
+
+</section>
+
+<!-- ===== STAGE 3 ===== -->
+<section id="letterStage">
+  <div class="wrapper" id="wrap">
+    <div class="envelope">
+      <div class="flap"></div>
+    </div>
+    <div class="letter">
+      <h3>Halloo imut ✨</h3>
+      <p>nggak terasa ya udah ganti tahun aja</p>
+      <p>Makasih yaa udah hadir di tahun 2025 ini</p>
+      <p>  Jalan jalan bareng pia, belanja bareng pia, duduk bareng pas famget, nemenin pia nangis di gd, duduk disamping pia, kemuseum bareng pia, ngasih hadiah untuk pia. Momen-momen itu jadi momen favorite dan berharga bagiku. Tahun ini terasa lebih hidup karena ada manusia cantik, imut, manis, dan baik hati ini di dalamnya</p>
+      <p>btw pia</p>
+      <p>Pliss pinjamin aku hp pia atau kirimin aku semua foto pia. foto pia pas famget, foto pas kita kepadang, foto pia di Gedung dprd, foto pas kita uji coba alat opsi pia, semua foto piaa. Aku mau simpan untuk kenang kenangan. aku pas buat web ini aja jadi bingung cari foto pia dimana.</p>
+      <p>Semoga hadiah kecil ini bisa bikin pia senang 😊(minta fotonya serius)</p>
+      <p>-dari dd nya pia</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLOATING CATS ===== -->
+<img src="assets/cat1.png" class="cat" style="top:15%;left:5%">
+<img src="assets/cat2.png" class="cat" style="top:40%;right:6%">
+<img src="assets/cat3.png" class="cat" style="bottom:20%;left:8%">
+<img src="assets/cat4.png" class="cat" style="bottom:30%;right:10%">
+
+<script>
+/* ===== GIFT ===== */
+let tap=0;
+const giftStage=document.getElementById("giftStage");
+const gift=document.getElementById("gift");
+document.body.style.overflow="hidden";
+
+gift.onclick=()=>{
+  tap++;
+  gift.classList.remove("shake");
+  void gift.offsetWidth;
+  gift.classList.add("shake");
+  if(tap>=3){
+    giftStage.style.opacity=0;
+    setTimeout(()=>{
+      giftStage.remove();
+      document.body.style.overflowY="auto";
+    },600);
+  }
+};
+
+/* ===== ENVELOPE ===== */
+document.getElementById("wrap").onclick=()=>{
+  document.getElementById("wrap").classList.toggle("open");
+};
+
+/* ===== DRAG CATS ===== */
+document.querySelectorAll(".cat").forEach(cat=>{
+  let drag=false,ox=0,oy=0;
+  cat.addEventListener("pointerdown",e=>{
+    drag=true;
+    ox=e.clientX-cat.offsetLeft;
+    oy=e.clientY-cat.offsetTop;
+    cat.setPointerCapture(e.pointerId);
+  });
+  cat.addEventListener("pointermove",e=>{
+    if(!drag) return;
+    cat.style.left=e.clientX-ox+"px";
+    cat.style.top=e.clientY-oy+"px";
+  });
+  cat.addEventListener("pointerup",()=>drag=false);
+});
+</script>
+
+</body>
+</html>
